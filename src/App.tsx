@@ -1,10 +1,26 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import CaseSearch from "./pages/CaseSearch";
+import NotFound from "./pages/NotFound";
+import RootLayout from "./components/RootLayout";
+import CrimeStats from "./pages/CrimeStats";
+import Analysis from "./pages/Analysis";
+import About from "./pages/About";
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-500">
-        TailwindCSS 테스트 성공! 🎉
-      </h1>
-    </div>
+    <Routes>
+      <Route element={<RootLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/crime-stats" element={<CrimeStats />} />
+        <Route path="/case-search" element={<CaseSearch />} />
+        <Route path="/analysis" element={<Analysis />} />
+        <Route path="/about" element={<About />} />
+      </Route>
+
+      <Route path="/home" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
